@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdempotentAPI.Filters;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 using Questao5.Domain.Entities;
 using Questao5.Infrastructure.Database.Repository;
@@ -11,6 +12,9 @@ namespace Questao5.Infrastructure.Services.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Consumes("application/json")]
+    [Produces("application/json")]
+    [Idempotent(Enabled = true)]
     public class MovimentoController : ControllerBase
     {
         private readonly DatabaseConfig _databaseConfig;
